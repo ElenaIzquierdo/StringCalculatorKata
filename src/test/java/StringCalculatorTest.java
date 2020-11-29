@@ -25,4 +25,18 @@ class StringCalculatorTest {
 
         assertEquals(1, result);
     }
+
+    @Test
+    void shouldReturnTheSumOfTwoNumbersWhenStringContainsThem() {
+        int result = stringCalculator.add("1,2");
+
+        assertEquals(3, result);
+    }
+
+    @Test
+    void souldReturn0WhenTheStringContainsMoreThanTwoNumbers() {
+        int result = stringCalculator.add("1,2,3");
+
+        assertEquals(0, result);
+    }
 }
