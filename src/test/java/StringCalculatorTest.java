@@ -27,16 +27,9 @@ class StringCalculatorTest {
     }
 
     @Test
-    void shouldReturnTheSumOfTwoNumbersWhenStringContainsThem() {
-        int result = stringCalculator.add("1,2");
+    void shouldReturnTheSumOfTheNumbersWhenStringContainsThem() {
+        int result = stringCalculator.add("1,2,3,4");
 
-        assertEquals(3, result);
-    }
-
-    @Test
-    void souldReturn0WhenTheStringContainsMoreThanTwoNumbers() {
-        int result = stringCalculator.add("1,2,3");
-
-        assertEquals(0, result);
+        assertEquals(10, result);
     }
 }

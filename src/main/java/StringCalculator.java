@@ -3,21 +3,15 @@ import static java.lang.Integer.parseInt;
 public class StringCalculator {
 
     public int add(String numbers) {
-        if(numbers.isEmpty() || numbers.length() > 3) {
-            return 0;
+        int result = 0;
+        for(int i =0; i < numbers.length(); i=i+2) {
+            result += getIntegerFrom(numbers.charAt(i));
         }
 
-        if(numbers.length() == 3) {
-            int firstNumber = getNumberFrom(numbers.charAt(0));
-            int secondNumber = getNumberFrom(numbers.charAt(2));
-
-            return firstNumber + secondNumber;
-        }
-
-        return parseInt(numbers);
+        return result;
     }
 
-    private int getNumberFrom(char c) {
+    private int getIntegerFrom(char c) {
         return parseInt(String.valueOf(c));
     }
 
