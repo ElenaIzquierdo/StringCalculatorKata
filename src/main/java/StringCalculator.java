@@ -4,8 +4,13 @@ public class StringCalculator {
 
     public int add(String numbers) {
         int result = 0;
-        for(int i =0; i < numbers.length(); i=i+2) {
-            result += getIntegerFrom(numbers.charAt(i));
+        for(int i =0; i < numbers.length(); ++i) {
+            char c = numbers.charAt(i);
+            if(c != '\\' && c!=','){
+                result += getIntegerFrom(c);
+            }else if(c == '\\'){
+                ++i;
+            }
         }
 
         return result;

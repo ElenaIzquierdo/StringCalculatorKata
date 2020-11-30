@@ -32,4 +32,11 @@ class StringCalculatorTest {
 
         assertEquals(10, result);
     }
+
+    @Test
+    void shouldIgnoreBackSlashNAndSumNumbers() {
+        int result = stringCalculator.add("1\\n2,3");
+
+        assertEquals(6, result);
+    }
 }
