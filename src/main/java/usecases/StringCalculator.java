@@ -1,4 +1,7 @@
-import static java.lang.Integer.parseInt;
+package usecases;
+
+import static utils.CharUtils.getIntegerFrom;
+import static utils.CharUtils.isDigit;
 
 public class StringCalculator {
 
@@ -10,17 +13,7 @@ public class StringCalculator {
                 result += getIntegerFrom(c);
             }
         }
-
         return result;
     }
-
-    private int getIntegerFrom(char c) {
-        return parseInt(String.valueOf(c));
-    }
-
-    private boolean isDigit(char c) {
-        return c > 47 && c < 58;
-    }
-
 }
 
