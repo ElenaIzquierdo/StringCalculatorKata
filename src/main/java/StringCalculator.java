@@ -6,10 +6,8 @@ public class StringCalculator {
         int result = 0;
         for(int i =0; i < numbers.length(); ++i) {
             char c = numbers.charAt(i);
-            if(c != '\\' && c!=','){
+            if(isDigit(c)){
                 result += getIntegerFrom(c);
-            }else if(c == '\\'){
-                ++i;
             }
         }
 
@@ -18,6 +16,10 @@ public class StringCalculator {
 
     private int getIntegerFrom(char c) {
         return parseInt(String.valueOf(c));
+    }
+
+    private boolean isDigit(char c) {
+        return c > 47 && c < 58;
     }
 
 }
