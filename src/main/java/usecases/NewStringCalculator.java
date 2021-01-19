@@ -26,6 +26,7 @@ public class NewStringCalculator {
         for(int i = 0; i < numbersSplitted.length; i++){
             int num = getNumberFromString(numbersSplitted[i]);
             if(num < 0) negativeNumbers.add(num);
+            if(num > 1000) num = 0;
             count += num;
         }
 

@@ -55,4 +55,11 @@ class NewStringCalculatorTest {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    void shouldIgnoreNumbersBiggerThan1000() throws NegativeNumberException {
+        int result = stringCalculator.add("2,1001");
+
+        assertEquals(2, result);
+    }
 }
