@@ -38,7 +38,7 @@ class NewStringCalculatorTest {
     }
 
     @Test
-    void shouldIgnoreOtherDelimeters() throws NegativeNumberException {
+    void shouldAcceptOtherDelimeters() throws NegativeNumberException {
         int result = stringCalculator.add("//;\\n1;2");
 
         assertEquals(3, result);
