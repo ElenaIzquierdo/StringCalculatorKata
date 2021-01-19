@@ -47,10 +47,10 @@ class NewStringCalculatorTest {
     @Test
     void shouldNotAcceptNegatives() {
         Exception exception = assertThrows(NegativeNumberException.class, () -> {
-            stringCalculator.add("1,-2,3,-1");
+            stringCalculator.add("-1,-2,3,1");
         });
 
-        String expectedMessage = "negatives not allowed [-2, -1]";
+        String expectedMessage = "negatives not allowed [-1, -2]";
         String actualMessage = exception.getMessage();
 
         assertEquals(expectedMessage, actualMessage);

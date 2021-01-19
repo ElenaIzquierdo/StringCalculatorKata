@@ -17,7 +17,7 @@ public class NewStringCalculator {
             return 0;
         }
         String delimiter = ",";
-        if(!isDigit(numbers.charAt(0))) {
+        if(numbers.charAt(0) == '/') {
             delimiter = Character.toString(numbers.charAt(2));
         }
         String [] numbersSplitted = getSubstringToWork(numbers, delimiter);
