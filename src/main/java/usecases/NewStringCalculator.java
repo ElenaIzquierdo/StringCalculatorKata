@@ -1,12 +1,18 @@
 package usecases;
 
+import exceptions.NegativeNumberException;
 import utils.CharUtils;
+import utils.IntUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static utils.CharUtils.isDigit;
+import static utils.IntUtils.getNumberFromString;
 
 public class NewStringCalculator {
 
-    public int add(String numbers){
+    public int add(String numbers) throws NegativeNumberException {
         if(numbers.isEmpty()) {
             return 0;
         }
@@ -16,11 +22,16 @@ public class NewStringCalculator {
         }
         String [] numbersSplitted = getSubstringToWork(numbers, delimiter);
         int count = 0;
+        List<Integer> negativeNumbers = new ArrayList<>();
         for(int i = 0; i < numbersSplitted.length; i++){
-            char c = numbersSplitted[i].charAt(0);
-            count += CharUtils.getIntegerFrom(c);
+            int num = getNumberFromString(numbersSplitted[i]);
+            if(num < 0) negativeNumbers.add(num);
+            count += num;
         }
 
+        if(!negativeNumbers.isEmpty()) {
+            throw new NegativeNumberException(negativeNumbers);
+        }
         return count;
     }
 
