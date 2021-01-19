@@ -1,13 +1,20 @@
 package usecases;
 
+import converters.ListStringNumbersToListIntNumbersConverter;
 import exceptions.NegativeNumberException;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class NewStringCalculatorTest {
 
-    private final NewStringCalculator stringCalculator = new NewStringCalculator();
+    private final ListStringNumbersToListIntNumbersConverter converter = mock(ListStringNumbersToListIntNumbersConverter.class);
+
+    private final NewStringCalculator stringCalculator = new NewStringCalculator(converter);
 
     @Test
     void shouldReturn0WhenEmptyString() throws NegativeNumberException {
@@ -18,6 +25,7 @@ class NewStringCalculatorTest {
 
     @Test
     void shouldReturnTheSameNumberWhenStringWithOneNumber() throws NegativeNumberException {
+        when(converter.convertFrom("1")).thenReturn(List.of(1));
         int result = stringCalculator.add("1");
 
         assertEquals(1, result);
@@ -25,27 +33,15 @@ class NewStringCalculatorTest {
 
     @Test
     void shouldReturnTheSumOfTheNumbersWhenStringContainsThem() throws NegativeNumberException {
+        when(converter.convertFrom("1,2,3,4")).thenReturn(List.of(1,2,3,4));
         int result = stringCalculator.add("1,2,3,4");
 
         assertEquals(10, result);
     }
 
     @Test
-    void shouldIgnoreNewLineAndSumNumbers() throws NegativeNumberException {
-        int result = stringCalculator.add("1\n2,3");
-
-        assertEquals(6, result);
-    }
-
-    @Test
-    void shouldAcceptOtherDelimeters() throws NegativeNumberException {
-        int result = stringCalculator.add("//;\\n1;2");
-
-        assertEquals(3, result);
-    }
-
-    @Test
     void shouldNotAcceptNegatives() {
+        when(converter.convertFrom("-1,-2,3,1")).thenReturn(List.of(-1,-2,3,1));
         Exception exception = assertThrows(NegativeNumberException.class, () -> {
             stringCalculator.add("-1,-2,3,1");
         });
@@ -58,6 +54,7 @@ class NewStringCalculatorTest {
 
     @Test
     void shouldIgnoreNumbersBiggerThan1000() throws NegativeNumberException {
+        when(converter.convertFrom("2,1001")).thenReturn(List.of(2,1001));
         int result = stringCalculator.add("2,1001");
 
         assertEquals(2, result);
