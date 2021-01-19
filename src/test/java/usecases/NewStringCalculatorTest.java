@@ -36,12 +36,10 @@ class NewStringCalculatorTest {
         assertEquals(6, result);
     }
 
-    /*
     @Test
     void shouldIgnoreOtherDelimeters() {
         int result = stringCalculator.add("//;\\n1;2");
 
         assertEquals(3, result);
-    }*/
-
+    }
 }
