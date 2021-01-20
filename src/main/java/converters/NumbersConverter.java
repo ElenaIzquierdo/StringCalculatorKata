@@ -3,7 +3,9 @@ package converters;
 import utils.IntUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NumbersConverter {
 
@@ -19,16 +21,12 @@ public class NumbersConverter {
         if(!delimiter.equals(",")) {
             numbers = numbers.substring(6 + delimiter.length()/2);
         }
-        String numbersWithoutNewLines = numbers.replaceAll("\n", delimiter);
-        String [] numbersAsString = numbersWithoutNewLines.split(delimiter);
 
-        List<Integer> result = new ArrayList<>();
-        for(String number : numbersAsString) {
-            int convertedNumber = IntUtils.getIntegerFrom(number);
-            result.add(convertedNumber);
-        }
-
-        return result;
+        return Arrays.stream(numbers
+                .replaceAll("\n", delimiter)
+                .split(delimiter))
+                .map(IntUtils::getIntegerFrom)
+                .collect(Collectors.toList());
     }
 
     private String getDelimeter(String numbers) {
