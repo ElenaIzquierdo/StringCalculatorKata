@@ -1,10 +1,7 @@
 package converters;
 
-import exceptions.NegativeNumberException;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ListStringNumbersToListIntNumbersConverterTest {
@@ -27,8 +24,15 @@ class ListStringNumbersToListIntNumbersConverterTest {
 
     @Test
     void shouldAcceptOtherDelimeters()  {
-        List<Integer> result = converter.convertFrom("//;\\n1;2");
+        List<Integer> result = converter.convertFrom("//[;]\\n1;2");
 
         assertEquals(List.of(1,2), result);
+    }
+
+    @Test
+    void shouldAcceptDelimetersLongerThanOneCharacter()  {
+        List<Integer> result = converter.convertFrom("//[***]\\n1***2***3");
+
+        assertEquals(List.of(1,2,3), result);
     }
 }
