@@ -4,18 +4,17 @@ import static java.lang.Integer.parseInt;
 
 public class IntUtils {
     public static int getIntegerFrom(String numberAsString) {
-        return convertNumberString(numberAsString.length()-1, numberAsString, 1);
-    }
-
-    private static int convertNumberString(int i, String num, int mult) {
-        char c = num.charAt(i);
-        if(i == 0) {
-            if(c == '-') {
-                return mult * -1;
+        int number = 0;
+        int mult = 1;
+        for(int i = numberAsString.length() - 1; i >= 0; --i) {
+            char c = numberAsString.charAt(i);
+            if(c != '-') {
+                number += getIntegerFrom(c) * mult;
+                mult *= 10;
             }
-            return getIntegerFrom(c) * mult;
+            else return number * -1;
         }
-        else return getIntegerFrom(c) * mult + convertNumberString(i-1, num, mult*10);
+        return number;
     }
 
     public static int getIntegerFrom(char c) {
