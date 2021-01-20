@@ -1,9 +1,9 @@
 package utils;
 
-import static utils.CharUtils.getIntegerFrom;
+import static java.lang.Integer.parseInt;
 
 public class IntUtils {
-    public static int getNumberFromString(String numberAsString) {
+    public static int getIntegerFrom(String numberAsString) {
         int number = 0;
         int mult = 1;
         for(int i = numberAsString.length() - 1; i >= 0; --i) {
@@ -17,6 +17,10 @@ public class IntUtils {
             }
         }
         return number;
+    }
+
+    public static int getIntegerFrom(char c) {
+        return parseInt(String.valueOf(c));
     }
 
 }

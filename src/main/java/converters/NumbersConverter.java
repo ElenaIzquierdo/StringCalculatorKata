@@ -24,7 +24,7 @@ public class NumbersConverter {
 
         List<Integer> result = new ArrayList<>();
         for(String number : numbersAsString) {
-            int convertedNumber = IntUtils.getNumberFromString(number);
+            int convertedNumber = IntUtils.getIntegerFrom(number);
             result.add(convertedNumber);
         }
 
