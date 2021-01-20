@@ -5,6 +5,7 @@ import exceptions.NegativeNumberException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NewStringCalculator {
 
@@ -19,18 +20,14 @@ public class NewStringCalculator {
             return 0;
         }
         List<Integer> numbersSplitted = converter.convertFrom(numbers);
-        List<Integer> negativeNumbers = new ArrayList<>();
-        int count = 0;
-        for(int i = 0; i < numbersSplitted.size(); i++){
-            int num = numbersSplitted.get(i);
-            if(num < 0) negativeNumbers.add(num);
-            if(num > 1000) num = 0;
-            count += num;
-        }
+        List<Integer> negativeNumbers = numbersSplitted.stream().filter(num -> num < 0).collect(Collectors.toList());
 
         if(!negativeNumbers.isEmpty()) {
             throw new NegativeNumberException(negativeNumbers);
         }
-        return count;
+
+        return numbersSplitted.stream()
+                .filter(num -> num <= 1000)
+                .reduce(0, Integer::sum);
     }
 }
