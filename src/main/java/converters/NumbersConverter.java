@@ -5,7 +5,7 @@ import utils.IntUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListStringNumbersToListIntNumbersConverter {
+public class NumbersConverter {
 
     public List<Integer> convertFrom(String numbers) {
         String delimiter = ",";

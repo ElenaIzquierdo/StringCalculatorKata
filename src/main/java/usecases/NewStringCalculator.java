@@ -1,6 +1,6 @@
 package usecases;
 
-import converters.ListStringNumbersToListIntNumbersConverter;
+import converters.NumbersConverter;
 import exceptions.NegativeNumberException;
 
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class NewStringCalculator {
 
-    private final ListStringNumbersToListIntNumbersConverter converter;
+    private final NumbersConverter converter;
 
-    public NewStringCalculator(ListStringNumbersToListIntNumbersConverter converter) {
+    public NewStringCalculator(NumbersConverter converter) {
         this.converter = converter;
     }
 

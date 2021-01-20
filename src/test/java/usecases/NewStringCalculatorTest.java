@@ -1,6 +1,6 @@
 package usecases;
 
-import converters.ListStringNumbersToListIntNumbersConverter;
+import converters.NumbersConverter;
 import exceptions.NegativeNumberException;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 
 class NewStringCalculatorTest {
 
-    private final ListStringNumbersToListIntNumbersConverter converter = mock(ListStringNumbersToListIntNumbersConverter.class);
+    private final NumbersConverter converter = mock(NumbersConverter.class);
 
     private final NewStringCalculator stringCalculator = new NewStringCalculator(converter);
 
